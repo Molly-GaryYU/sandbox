@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Flex & Grid Practice --- Dice</title>
+
+    <style>
+      .flex .first-face {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .grid .first-face {
+        display: grid;
+        grid-template-columns: 33% 34% 33%;
+        grid-template-rows: 33% 34% 33%;
+      }
+
+      .grid .first-face .pip {
+        grid-column-start: 2;
+        grid-row-start: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="/dice.png" />
+    <h2>
+      Finish the html and css code to show above image. Add any extra divs if
+      you need. <br />(The first dice has already given)
+    </h2>
+    <h1>Flex dices</h1>
+    <div class="dice__container flex">
+      <div class="first-face">
+        <span class="pip"></span>
+      </div>
+      <div class="second-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="third-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="fourth-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="fifth-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="sixth-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+    </div>
+
+    <h1>Grid dices</h1>
+    <div class="dice__container grid">
+      <div class="first-face">
+        <span class="pip"></span>
+      </div>
+      <div class="second-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="third-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="fourth-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="fifth-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+      <div class="sixth-face">
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+        <span class="pip"></span>
+      </div>
+    </div>
+  </body>
+</html>
