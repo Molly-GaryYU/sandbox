@@ -55,7 +55,7 @@ const autoRefetch = (url, maxRetryNumber, waitTime, callback) => {
   if (maxRetryNumber >= 1) {
     console.log("回调ing", maxRetryNumber)
     maxRetryNumber--;
-    fetch(url, (data, err) => {
+    fetch(url, (err, data) => {
       if (!err) {
         console.log("成功", data);
         return
@@ -77,7 +77,13 @@ const autoRefetch = (url, maxRetryNumber, waitTime, callback) => {
 //     console.log('成功:', data);
 //   }
 // })
-
+autoRefetch('http://www.baidu.com', 4, 3000, (data, err) => {
+  if (err) {
+    console.error('失败:', String(err).substring(0, 20));
+  } else {
+    console.log('成功:');
+  }
+})
 
 
 /**
@@ -91,8 +97,8 @@ const autoRefetchPromise = (url, maxRetryNumber, waitTime) => {
   const promise = new Promise((resolve, reject) => {
     if (--maxRetryNumber >= 1) {
       setTimeout(() => {
-        fetch(url, (data, err) => {
-          if (!err) {
+        fetch(url, (err, data) => {
+          if (err) {
             resolve(data)
           } else {
             reject(err)
@@ -108,7 +114,11 @@ const autoRefetchPromise = (url, maxRetryNumber, waitTime) => {
     autoRefetchPromise(url, maxRetryNumber, waitTime)
   })
 };
+
+
+
 // autoRefetchPromise('http://google1234.com', 3, 3000)
+// autoRefetchPromise('http://google.com', 3, 3000)
 
 
 /**
@@ -120,18 +130,18 @@ const autoRefetchPromise = (url, maxRetryNumber, waitTime) => {
  */
 const autoRefetchAsync = async (url, maxRetryNumber, timeout) => {
   if (--maxRetryNumber >= 1) {
-    let response = await fetch(url, (data, err) => {
+    let response = await fetch(url, async (err, data) => {
       if (!err) {
-        console.log("ok")
-        return
+        console.log("ok", data)
+        return data
       } else {
-        console.log("No+1")
-        setTimeout(() => {
-          autoRefetchAsync(url, maxRetryNumber, timeout)
-        }, timeout);
+        console.log("No+1", err)
+        await delay(timeout);
+        return autoRefetchAsync(url, maxRetryNumber, timeout)
       }
     });
   }
 }
 
-autoRefetchAsync('http://google1234.com', 3, 3000);
+// autoRefetchAsync('http://google1234.com', 3, 3000);
+// autoRefetchAsync('http://google.com', 3, 3000);
